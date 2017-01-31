@@ -1,0 +1,7 @@
+.reveal section img { background:none; border:none; box-shadow:none; }
+.reveal p {
+    line-height: 3;
+}
+.reveal .org-ul {
+    line-height: 2;
+}

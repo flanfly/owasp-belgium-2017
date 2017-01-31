@@ -4,13 +4,14 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+		<title>Panopticon</title>
 
 		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css">
+		<link rel="stylesheet" href="css/theme/beige.css">
 
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
+		<link rel="stylesheet" href="lib/css/my.css">
 
 		<!-- Printing and PDF exports -->
 		<script>
@@ -24,8 +25,172 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+				<section>
+					<aside class="notes"><pre>
+* Kai, Hacker from Bochum
+* Panopticon, x-platform, GUI disassembler
+* F/LOSS IDA Pro, Hopper replacement
+					</pre></aside>
+
+					<img src="logo.png"></img>
+					<div style="font-weight: 300; letter-spacing: 2.0;">A Libre Cross-Platform Disassembler</div>
+					<div style="font-size: 80%; padding-top: 2em;">by <b>Kai</b>&nbsp;/&nbsp;<a>@_cibo_</a></div>
+					<span>&nbsp;</span>
+				</section>
+
+				<!-- Why -->
+				<section>
+					<aside class="notes"><pre>
+* Disassembler are universial tools for security work
+* Closed-source, binary only applications are a fact of life
+					</pre></aside>
+				<!-- List of uses -->
+
+					<h2></h2>
+				</section>
+
+
+				<!-- Goals -->
+				<section>
+					<aside class="notes"><pre>
+* Ultimate project goals
+* NOT the current status
+* ...more a vision of the perfect tool
+					</pre></aside>
+
+					<h2>Goals</h2>
+				</section>
+
+				<section>
+					<aside class="notes"><pre>
+* For manual rev. engineering
+* Kitchen-sink approach
+* Integrated, interactive GUI
+	* Bridging the gap to analysists brain
+					</pre></aside>
+
+					<!-- TODO: screen of Binnavi, IDA, Hopper -->
+				 	<!-- TODO: chart objcode -> asm -> cfg -> brain -->
+					<img src="screen.png"></img>
+				</section>
+
+				<section>
+					<aside class="notes"><pre>
+* Semantics-based features
+	* AI
+	* SMT
+					</pre></aside>
+
+					<h3>Semantics-based analysis</h3>
+				</section>
+
+				<section>
+					<aside class="notes"><pre>
+					</pre></aside>
+
+					<p><b>Abstract Interpretation:</b></p>
+					Approximate what happens at run-time without executing code
+				</section>
+
+				<section data-transition="slide-in fade-out">
+					<aside class="notes"><pre>
+					</pre></aside>
+<pre style="width: 40%; float: left"><code data-trim data-noescape>
+switch(val) {
+  case 2:
+  case 3:
+  case 5:
+  case 7:
+  case 11:
+  case 13:
+  case 17:
+  case 19:
+  case 23:
+  case 947:
+    str = "prime"; break;
+  default:
+    str = "not prime";
+}</code></pre>
+					<img style="width: 40%; float: right" src="bts3.png"></img>
+				</section>
+
+				<section data-transition="fade-in slide-out">
+					<aside class="notes"><pre>
+					</pre></aside>
+					Overapproximation of what happens at run-time:
+					<img style="width: 40%;" src="switch2.png"></img>
+				</section>
+
+				<section>
+					<aside class="notes"><pre>
+	* SMT
+					</pre></aside>
+
+					<p><b>Bounded Model Checking:</b></p>
+					Finds one input that excercies a <i>specific</i> path in to program.
+				</section>
+				<section data-transition="slide-in fade-out">
+					<aside class="notes"><pre>
+					</pre></aside>
+					<img class="stretch" src="pathcond1.png"></img>
+				</section>
+
+				<section data-transition="fade-in slide-out">
+					<aside class="notes"><pre>
+					</pre></aside>
+					<img  class="stretch" src="pathcond2.png"></img>
+				</section>
+
+				<section data-transition="fade-in slide-out">
+					<aside class="notes"><pre>
+					</pre></aside>
+					Exact simulation of what happens at run-time.
+				</section>
+
+				<section>
+					<aside class="notes"><pre>
+* Semantics-based features
+	* AI
+* Not simply a IDA clone
+* Scripting support
+* Decompiler
+* Display exec traces &amp; ctrl debugger
+					</pre></aside>
+
+					<h2></h2>
+				</section>
+
+				<!-- Status -->
+				<section>
+					<aside class="notes"><pre>
+* Basic disassembler for AMD64, AVR &amp; MOS-6502
+* Opens ELF file (PE is WIP)
+* Display CFGs
+* Project hosted on Github
+					</pre></aside>
+
+					<h2></h2>
+				</section>
+
+				<!-- Architecture -->
+				<section>
+					<aside class="notes"><pre>
+* Two parts:
+	* Library: disass. &amp; analysis in Rust
+	* GUI: thin Rust layer w/ QML (JS)
+* Library:
+	* Data abstraction
+	* Disass. &amp; code gen
+	* IL definition
+	* Code abstraction
+	* Dataflow &amp; AI
+* UI:
+	* Rust layer inter. w/ lib
+	* Widgets are written in QML
+					</pre></aside>
+
+					<h2></h2>
+				</section>
 			</div>
 		</div>
 

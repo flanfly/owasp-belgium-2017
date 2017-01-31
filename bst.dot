@@ -1,0 +1,34 @@
+digraph G {
+	node [shape=circle]
+	edge [arrowsize=0.7]
+
+	bb1 -> bb2 [label="x > 2"]
+	bb1 -> bb16 [label="x = 2"]
+	bb2 -> bb3 [label="x <= 11"]
+	bb2 -> bb4 [label="x > 11"]
+	bb3 -> bb5 [
+	bb3 -> bb16 [label="x = 11"]
+	bb4 -> bb6
+	bb4 -> bb16
+	bb5 -> bb9
+	bb5 -> bb7
+	bb6 -> bb10
+	bb6 -> bb12
+	bb7 -> bb8
+	bb7 -> bb16
+	bb8 -> bb15
+	bb8 -> bb14
+	bb9 -> bb13
+	bb9 -> bb16
+	bb10 -> bb15
+	bb10 -> bb11
+	bb11 -> bb16
+	bb12 -> bb16
+	bb12 -> bb15
+	bb13 -> bb16
+	bb13 -> bb15
+	bb14 -> bb16
+
+	bb15 [shape=rect]
+	bb16 [shape=rect]
+}
