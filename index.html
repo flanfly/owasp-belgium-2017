@@ -39,14 +39,19 @@
 				</section>
 
 				<!-- Why -->
-				<section>
+				<section style="line-height: 1.6666;">
 					<aside class="notes"><pre>
 * Disassembler are universial tools for security work
 * Closed-source, binary only applications are a fact of life
 					</pre></aside>
+					<p>Turns binaries into something legible to...</p>
+					<ul style="list-style-type: none">
+						<li>...hunt bugs in proprietary apps</li>
+						<li>...analyse malware behaviour</li>
+						<li>...recover proprietary protocols &amp; file formats</li>
+						<li>...verify copy protection/DRM schemes</li>
+					</ul>
 				<!-- List of uses -->
-
-					<h2></h2>
 				</section>
 
 
@@ -58,10 +63,10 @@
 * ...more a vision of the perfect tool
 					</pre></aside>
 
-					<h2>Goals</h2>
+					<h2>Project goals</h2>
 				</section>
 
-				<section>
+				<section data-transition="slide-in fade-out">
 					<aside class="notes"><pre>
 * For manual rev. engineering
 * Kitchen-sink approach
@@ -69,9 +74,21 @@
 	* Bridging the gap to analysists brain
 					</pre></aside>
 
-					<!-- TODO: screen of Binnavi, IDA, Hopper -->
-				 	<!-- TODO: chart objcode -> asm -> cfg -> brain -->
-					<img src="screen.png"></img>
+					<img src="flowchart1.png"></img>
+				</section>
+
+				<section data-transition="fade-in fade-out">
+					<aside class="notes"><pre>
+					</pre></aside>
+
+					<img src="flowchart2.png"></img>
+				</section>
+
+				<section data-transition="fade-in slide-out">
+					<aside class="notes"><pre>
+					</pre></aside>
+
+					<img src="flowchart3.png"></img>
 				</section>
 
 				<section>
@@ -161,7 +178,7 @@ switch(val) {
 
 				<section>
 					<aside class="notes"><pre>
-					collected by a debugger or utilities like pintool.
+* collected by a debugger or utilities like pintool.
 					</pre></aside>
 
 					<p><b>Display, compare and run execution traces:</b></p>
@@ -172,12 +189,12 @@ switch(val) {
 					<aside class="notes"><pre>
 					</pre></aside>
 					<p><b>Scripting support:</b></p>
-							Embed a Ruby/Python/Js/<i>Whatever</i> interpreter.
+					Embed a Ruby/Python/Js/<i>Whatever</i> interpreter.
 				</section>
 
 				<section>
 					<aside class="notes"><pre>
-							Use Abstract Interpretation to recover the stack layout, do type inferrence and
+* Use Abstract Interpretation to recover the stack layout, do type inferrence and
 					</pre></aside>
 					<p><b>Decompiler:</b></p>
 					Translate everythig to (something reassembling) C.
@@ -185,14 +202,44 @@ switch(val) {
 
 				<!-- Status -->
 				<section>
+					<h2>Reality</h2>
+				</section>
+
+				<section>
 					<aside class="notes"><pre>
-* Basic disassembler for AMD64, AVR &amp; MOS-6502
-* Opens ELF file (PE is WIP)
 * Display CFGs
+					</pre></aside>
+
+					<img src="panop-screen.png"></img>
+				</section>
+
+				<section>
+					<aside class="notes"><pre>
+* Disassembles x86 32 and 64 bits. Recognizes all opcodes present in glibc.
+* No XOP
+* 8 bit architectures AVR &amp; MOS 6502
+					</pre></aside>
+
+					<h3>x86(-64), 8-bit AVR, MOS 6502</h3>
+					<span>&nbsp;</span>
+				</section>
+
+				<section>
+					<aside class="notes"><pre>
+* Opens 32 and 64 bit ELF files
+* Raw flash dumps for AVR
+					</pre></aside>
+
+					<h3>32 &amp; 64 bit ELF</h3>
+					<span>&nbsp;</span>
+				</section>
+
+				<section>
+					<aside class="notes"><pre>
 * Project hosted on Github
 					</pre></aside>
 
-					<h2>Reality</h2>
+					<img class="stretch" src="gh-screen.png"></img>
 				</section>
 
 				<!-- Architecture -->
@@ -201,20 +248,110 @@ switch(val) {
 * Two parts:
 	* Library: disass. &amp; analysis in Rust
 	* GUI: thin Rust layer w/ QML (JS)
-* Library:
-	* Data abstraction
-	* Disass. &amp; code gen
-	* IL definition
-	* Code abstraction
-	* Dataflow &amp; AI
 * UI:
 	* Rust layer inter. w/ lib
 	* Widgets are written in QML
 					</pre></aside>
 
-					<h2></h2>
+					<h2>Architecture</h2>
+					<ul>
+						<li><b>Library</b> (<code>panopticon</code>): Rust</li>
+						<li><b>Frontend</b> (<code>qtpanopticon</code>): QML (JS) &amp; Rust</li>
+					</ul>
 				</section>
-			</div>
+
+				<section>
+					<aside class="notes"><pre>
+* Disass. &amp; code gen
+  * disassembler.rs,
+	* amd64/, avr/, mos/
+	* function.rs, mnemonic.rs
+* IL definition: il.rs
+* Data abstraction
+  * layer.rs, region.rs
+* Code abstraction
+  * mnemonic.rs, basic_block.rs, function.rs, program.rs, project.rs
+* Dataflow &amp; AI
+  * abstractinterp.rs
+	* dataflow.rs</pre></aside>
+
+				<pre style="width: 40%; float: left"><code data-trim data-noescape style="max-height: 100%">
+lib/
+└── src/
+    ├── abstractinterp.rs
+    ├── amd64/
+    ├── avr/
+    ├── basic_block.rs
+    ├── dataflow.rs
+    ├── disassembler.rs
+    ├── elf.rs
+    ├── function.rs
+    ├── il.rs
+    ├── layer.rs
+    ├── lib.rs
+    ├── mnemonic.rs
+    ├── mos/
+    ├── pe/
+    ├── program.rs
+    ├── project.rs
+    ├── region.rs
+    ├── result.rs
+    └── rreil.rs</code></pre>
+
+<div style="width: 54%; float: right;  padding-top: 60px;">
+						<h3>Library</h3>
+	<ul style="font-size: 80%;">
+						<li style="padding-bottom: .5em;">Disassembler &amp; code generator</li>
+							<li style="padding-bottom: .5em;">Abstract interpreter &amp; dataflow analysis</li>
+							<li style="padding-bottom: .5em;">Program loading &amp; data abstraction</li>
+							<li style="padding-bottom: .5em;">(De)serialization</li>
+						</ul>
+</div>
+				</section>
+
+				<section>
+					<aside class="notes"><pre>
+</pre></aside>
+
+				<pre style="width: 40%; float: left; margin-top: 80px;"><code data-trim data-noescape>
+├── qml/
+│   └── ...
+└── qt/
+    └── src/
+        ├── controller.rs
+        ├── function.rs
+        ├── main.rs
+        ├── paths.rs
+        ├── project.rs
+        └── sugiyama.rs</code></pre>
+
+<div style="width: 54%; float: right; padding-top: 0px;">
+						<h3>Frontend</h3>
+	<ul style="font-size: 80%;">
+		<li style="padding-bottom: .5em;">Communication Qt/QML &lt;--&gt; Rust</li>
+							<li style="padding-bottom: .5em;">CFG layouting</li>
+							<li style="padding-bottom: .5em;">QML widgets</li>
+							<li style="padding-bottom: .5em;">Misc. OS specific stuff</li>
+						</ul>
+</div>
+				</section>
+
+				<section>
+					<aside class="notes"><pre>
+* Project website
+* Development on github</pre></aside>
+		<img src="icon.png"></img>
+					<div>
+					<ul style="font-size: 80%; list-style-type: none; text-align: center;">
+						<li style="padding-bottom: .5em;">https://panopticon.re/</li>
+						<li style="padding-bottom: .5em;">https://github.com/das-labor/panopticon</li>
+						<li style="padding-bottom: .5em;">#panopticon on Freenode</li>
+						<li style="padding-bottom: .5em;">@panopticon_re</li>
+						</ul>
+					</div>
+				</section>
+
+					</div>
 		</div>
 
 		<script src="lib/js/head.min.js"></script>

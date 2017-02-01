@@ -21,3 +21,17 @@ jne    0x400a4f
 
 mov    edi,0x4879cf
 call   _puts
+
+sat
+(model 
+  (define-fun b () (_ BitVec 32)
+    #x3f33dfaf)
+  (define-fun a () (_ BitVec 32)
+    #x15114aa6)
+  (define-fun d () (_ BitVec 32)
+    #xc0cc2050)
+  (define-fun c () (_ BitVec 32)
+    #x3f33dff2)
+)
+
+2A22954C
