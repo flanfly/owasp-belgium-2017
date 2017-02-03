@@ -29,7 +29,6 @@
 					<aside class="notes"><pre>
 * Kai, Hacker from Bochum
 * Panopticon, x-platform, GUI disassembler
-* F/LOSS IDA Pro, Hopper replacement
 					</pre></aside>
 
 					<img src="logo.png"></img>
@@ -41,15 +40,16 @@
 				<!-- Why -->
 				<section style="line-height: 1.6666;">
 					<aside class="notes"><pre>
-* Disassembler are universial tools for security work
-* Closed-source, binary only applications are a fact of life
+* Disass are universal tools
+  for security work
+* Closed-source, binary only
+  applications are a fact of life
 					</pre></aside>
 					<p>Turns binaries into something legible to...</p>
 					<ul style="list-style-type: none">
 						<li>...hunt bugs in proprietary apps</li>
 						<li>...analyse malware behaviour</li>
 						<li>...recover proprietary protocols &amp; file formats</li>
-						<li>...verify copy protection/DRM schemes</li>
 					</ul>
 				<!-- List of uses -->
 				</section>
@@ -58,6 +58,10 @@
 				<!-- Goals -->
 				<section>
 					<aside class="notes"><pre>
+* For manual rev. engineering
+* Kitchen-sink approach
+* Integrated, interactive GUI
+	* Bridging the gap to analysts brain
 * Ultimate project goals
 * NOT the current status
 * ...more a vision of the perfect tool
@@ -68,10 +72,6 @@
 
 				<section data-transition="slide-in fade-out">
 					<aside class="notes"><pre>
-* For manual rev. engineering
-* Kitchen-sink approach
-* Integrated, interactive GUI
-	* Bridging the gap to analysists brain
 					</pre></aside>
 
 					<img src="flowchart1.png"></img>
@@ -86,6 +86,9 @@
 
 				<section data-transition="fade-in slide-out">
 					<aside class="notes"><pre>
+* Stress the I in GUI
+* Different data rep.
+* Features start as GUI mockups
 					</pre></aside>
 
 					<img src="flowchart3.png"></img>
@@ -93,9 +96,8 @@
 
 				<section>
 					<aside class="notes"><pre>
-* Semantics-based features
-	* AI
-	* SMT
+* Semantic vs. Syntax
+* Panop. generates IL code
 					</pre></aside>
 
 					<h3>Semantics-based analysis</h3>
@@ -103,6 +105,9 @@
 
 				<section>
 					<aside class="notes"><pre>
+Invariants across are execs
+May overapprox
+Values are replaced w/ sets
 					</pre></aside>
 
 					<p><b>Abstract Interpretation:</b></p>
@@ -144,18 +149,36 @@ switch(val) {
 					</pre></aside>
 
 					<p><b>Bounded Model Checking:</b></p>
-					Finds one input that excercies a <i>specific</i> path in to program.
+					Finds one input that exercises a <i>specific</i> path in to program.
 				</section>
 				<section data-transition="slide-in fade-out">
 					<aside class="notes"><pre>
 					</pre></aside>
-					<img class="stretch" src="pathcond1.png"></img>
+<pre style="width: 40%; float: left; margin-top: 4em;"><code style="max-height: 30em" data-trim data-noescape>
+if(a &lt; b) {
+  if(a &gt; 0) {
+    unsigned int c = 3 * a;
+    unsigned int d = ~b;
+
+    if(d + c == 0x42) {
+      printf("Ok\n");
+    } else {
+      printf("Wrong\n");
+    }
+  } else {
+    printf("Wrong\n");
+  }
+} else {
+  printf("Wrong\n");
+}
+</code></pre>
+					<img style="width: 35%; float: right; margin-right: 3.3em;" src="pathcond1.png"></img>
 				</section>
 
 				<section data-transition="fade-in slide-out">
 					<aside class="notes"><pre>
 					</pre></aside>
-					<img  class="stretch" src="pathcond2.png"></img>
+					<img class="stretch" src="pathcond2.png"></img>
 				</section>
 
 				<section data-transition="fade-in slide-out">
@@ -173,7 +196,7 @@ switch(val) {
 					</pre></aside>
 
 					<h3>Blue-sky features</h3>
-					In acending order of outrageousness
+					In ascending order of outrageousness
 				</section>
 
 				<section>
@@ -194,10 +217,10 @@ switch(val) {
 
 				<section>
 					<aside class="notes"><pre>
-* Use Abstract Interpretation to recover the stack layout, do type inferrence and
+* Use Abstract Interpretation to recover the stack layout, do type inference and
 					</pre></aside>
 					<p><b>Decompiler:</b></p>
-					Translate everythig to (something reassembling) C.
+					Translate everything to (something reassembling) C.
 				</section>
 
 				<!-- Status -->
@@ -329,7 +352,7 @@ lib/
 						<h3>Frontend</h3>
 	<ul style="font-size: 80%;">
 		<li style="padding-bottom: .5em;">Communication Qt/QML &lt;--&gt; Rust</li>
-							<li style="padding-bottom: .5em;">CFG layouting</li>
+							<li style="padding-bottom: .5em;">CFG layout</li>
 							<li style="padding-bottom: .5em;">QML widgets</li>
 							<li style="padding-bottom: .5em;">Misc. OS specific stuff</li>
 						</ul>
