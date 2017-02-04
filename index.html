@@ -61,10 +61,6 @@
 * For manual rev. engineering
 * Kitchen-sink approach
 * Integrated, interactive GUI
-	* Bridging the gap to analysts brain
-* Ultimate project goals
-* NOT the current status
-* ...more a vision of the perfect tool
 					</pre></aside>
 
 					<h2>Project goals</h2>
@@ -72,6 +68,10 @@
 
 				<section data-transition="slide-in fade-out">
 					<aside class="notes"><pre>
+* Binary RE
+* 1. step: disass
+* Recover asm listing
+* 1-1 mapping
 					</pre></aside>
 
 					<img src="flowchart1.png"></img>
@@ -79,6 +79,9 @@
 
 				<section data-transition="fade-in fade-out">
 					<aside class="notes"><pre>
+* functions exist on asm
+* separate lst into funs
+* cut funs in bb
 					</pre></aside>
 
 					<img src="flowchart2.png"></img>
@@ -107,7 +110,6 @@
 					<aside class="notes"><pre>
 Invariants across are execs
 May overapprox
-Values are replaced w/ sets
 					</pre></aside>
 
 					<p><b>Abstract Interpretation:</b></p>
@@ -115,7 +117,10 @@ Values are replaced w/ sets
 				</section>
 
 				<section data-transition="slide-in fade-out">
-					<aside class="notes"><pre>
+				  <aside class="notes"><pre>
+* C switch: left
+* asm cfg: right
+* dotted lines -&gt; assignment node
 					</pre></aside>
 <pre style="width: 40%; float: left"><code data-trim data-noescape>
 switch(val) {
@@ -129,15 +134,20 @@ switch(val) {
   case 19:
   case 23:
   case 947:
-    str = "prime"; break;
+  printf("prime\n"); break;
   default:
-    str = "not prime";
+  return false;
 }</code></pre>
 					<img style="width: 40%; float: right" src="bts3.png"></img>
 				</section>
 
 				<section data-transition="fade-in slide-out">
 					<aside class="notes"><pre>
+* all cases join into on bb
+* AI can infer that X must be 2,3,5,..
+* This can be done manually,
+* ...but auto. reduces cognitive load
+* analysts can concentrate on big pic.
 					</pre></aside>
 					Overapproximation of what happens at run-time:
 					<img style="width: 40%;" src="switch2.png"></img>
@@ -145,7 +155,7 @@ switch(val) {
 
 				<section>
 					<aside class="notes"><pre>
-	* SMT
+* BMC: one specific path that fulfills constraints
 					</pre></aside>
 
 					<p><b>Bounded Model Checking:</b></p>
@@ -153,6 +163,10 @@ switch(val) {
 				</section>
 				<section data-transition="slide-in fade-out">
 					<aside class="notes"><pre>
+* Find paths
+* left: C, right: partial CFG
+* artificial example
+* what's a,b so "Ok" is printed
 					</pre></aside>
 <pre style="width: 40%; float: left; margin-top: 4em;"><code style="max-height: 30em" data-trim data-noescape>
 if(a &lt; b) {
@@ -177,6 +191,7 @@ if(a &lt; b) {
 
 				<section data-transition="fade-in slide-out">
 					<aside class="notes"><pre>
+* BMC finds a path and gives all values along the trace
 					</pre></aside>
 					<img class="stretch" src="pathcond2.png"></img>
 				</section>
@@ -217,7 +232,8 @@ if(a &lt; b) {
 
 				<section>
 					<aside class="notes"><pre>
-* Use Abstract Interpretation to recover the stack layout, do type inference and
+* Use AI to recover the stack layout,
+  do type inference and
 					</pre></aside>
 					<p><b>Decompiler:</b></p>
 					Translate everything to (something reassembling) C.
@@ -230,6 +246,7 @@ if(a &lt; b) {
 
 				<section>
 					<aside class="notes"><pre>
+* List of functions
 * Display CFGs
 					</pre></aside>
 
