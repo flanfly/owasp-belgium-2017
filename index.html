@@ -27,7 +27,7 @@
 			<div class="slides">
 				<section>
 					<aside class="notes"><pre>
-* Kai, Hacker from Bochum
+* Kai, Hacker from Germany
 * Panopticon, x-platform, GUI disassembler
 					</pre></aside>
 
@@ -240,38 +240,39 @@ if(a &lt; b) {
 				</section>
 
 				<!-- Status -->
-				<section>
-					<h2>Reality</h2>
-				</section>
 
 				<section>
-					<aside class="notes"><pre>
+					<h2>Demo!</h2>
+
+          <section>
+            <aside class="notes"><pre>
 * List of functions
 * Display CFGs
-					</pre></aside>
+            </pre></aside>
 
-					<img src="panop-screen.png"></img>
-				</section>
+            <img src="panop-screen.png"></img>
+          </section>
 
-				<section>
-					<aside class="notes"><pre>
+          <section>
+            <aside class="notes"><pre>
 * Disassembles x86 32 and 64 bits. Recognizes all opcodes present in glibc.
 * No XOP
 * 8 bit architectures AVR &amp; MOS 6502
-					</pre></aside>
+            </pre></aside>
 
-					<h3>x86(-64), 8-bit AVR, MOS 6502</h3>
-					<span>&nbsp;</span>
-				</section>
+            <h3>x86(-64), 8-bit AVR, MOS 6502</h3>
+            <span>&nbsp;</span>
+          </section>
 
-				<section>
-					<aside class="notes"><pre>
+          <section>
+            <aside class="notes"><pre>
 * Opens 32 and 64 bit ELF files
 * Raw flash dumps for AVR
-					</pre></aside>
+            </pre></aside>
 
-					<h3>32 &amp; 64 bit ELF</h3>
-					<span>&nbsp;</span>
+            <h3>32 &amp; 64 bit ELF</h3>
+            <span>&nbsp;</span>
+          </section>
 				</section>
 
 				<section>
@@ -318,20 +319,20 @@ if(a &lt; b) {
 				<pre style="width: 40%; float: left"><code data-trim data-noescape style="max-height: 100%">
 lib/
 └── src/
-    ├── abstractinterp.rs
+    ├── abstractinterp/
     ├── amd64/
     ├── avr/
     ├── basic_block.rs
     ├── dataflow.rs
     ├── disassembler.rs
-    ├── elf.rs
     ├── function.rs
     ├── il.rs
     ├── layer.rs
     ├── lib.rs
+    ├── loader.rs
     ├── mnemonic.rs
     ├── mos/
-    ├── pe/
+    ├── pipeline.rs
     ├── program.rs
     ├── project.rs
     ├── region.rs
@@ -354,16 +355,19 @@ lib/
 </pre></aside>
 
 				<pre style="width: 40%; float: left; margin-top: 80px;"><code data-trim data-noescape>
+├── glue/
+│   └── ...
 ├── qml/
 │   └── ...
 └── qt/
     └── src/
-        ├── controller.rs
-        ├── function.rs
+        ├── action.rs
+        ├── control_flow_layout.rs
+        ├── glue.rs
         ├── main.rs
         ├── paths.rs
-        ├── project.rs
-        └── sugiyama.rs</code></pre>
+        ├── singleton.rs
+        └── sugiyama/</code></pre>
 
 <div style="width: 54%; float: right; padding-top: 0px;">
 						<h3>Frontend</h3>
