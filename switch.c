@@ -1,6 +1,8 @@
 #include <stdio.h>
 
-int main(int argc,char* argv[]) {
+extern void switch_example(void);
+
+void switch_example(void) {
 	int val;
 	if(scanf("%d",&val) == 1) {
 		char *str = NULL;
@@ -24,4 +26,10 @@ int main(int argc,char* argv[]) {
 
 		printf("%s\n",str);
 	}
+}
+
+int main(int argc,char* argv[]) {
+  switch_example();
+
+  return 0;
 }
